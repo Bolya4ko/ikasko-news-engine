@@ -1,0 +1,4 @@
+parseNews({
+	html,
+	selectors
+});
