@@ -3,7 +3,7 @@
 	"version": "1.0.0",
 	"type": "module",
 	"scripts": {
-		"start": "node src/engine.js"
+		"start": "node src/server.js"
 	},
 	"dependencies": {
 		"axios": "^1.7.0",
