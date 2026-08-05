@@ -1,38 +1,26 @@
 import axios from "axios";
-import { chromium } from "playwright";
 
 /**
- * Завантаження HTML через Playwright
+ * Завантаження HTML через Axios
  */
 export async function fetchHtml(url) {
 
-	const browser = await chromium.launch({
-		headless: true
-	});
-
 	try {
 
-		const page = await browser.newPage({
+		const response = await axios.get(url, {
 
-			userAgent:
-				"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139.0.0.0 Safari/537.36"
+			timeout: 30000,
+
+			headers: {
+				"User-Agent":
+					"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 Chrome/139.0.0.0 Safari/537.36"
+			}
 
 		});
 
-		await page.goto(url, {
-			waitUntil: "domcontentloaded",
-			timeout: 60000
-		});
-
-		const html = await page.content();
-
-		await browser.close();
-
-		return html;
+		return response.data;
 
 	} catch (error) {
-
-		await browser.close();
 
 		console.error("fetchHtml:", error.message);
 
@@ -41,7 +29,6 @@ export async function fetchHtml(url) {
 	}
 
 }
-
 
 /**
  * Завантаження JSON через Axios
@@ -55,10 +42,7 @@ export async function fetchJson(url) {
 			timeout: 15000,
 
 			headers: {
-
-				"User-Agent":
-					"Mozilla/5.0"
-
+				"User-Agent": "Mozilla/5.0"
 			}
 
 		});

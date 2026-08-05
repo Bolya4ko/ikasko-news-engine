@@ -11,10 +11,6 @@
 		"dotenv": "^16.4.0",
 		"express": "^5.2.1",
 		"node-cron": "^3.0.3",
-		"playwright": "^1.62.1",
 		"sanitize-html": "^2.13.0"
-	},
-	"scripts": {
-		"start": "node src/server.js",
 	}
 }
